@@ -20,7 +20,6 @@ const (
 
 type dohClient struct {
 	url       string
-	transport *http.Transport
 }
 
 func (dc *dohClient) Exchange(m *D.Msg) (msg *D.Msg, err error) {
@@ -38,7 +37,6 @@ func (dc *dohClient) ExchangeContext(ctx context.Context, m *D.Msg) (msg *D.Msg,
 	}
 
 	req = req.WithContext(ctx)
-	msg, err = dc.doRequest(req)
 	if err == nil {
 		msg.Id = m.Id
 	}
